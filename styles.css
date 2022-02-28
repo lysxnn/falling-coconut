@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#game-intro {
+    /width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10vh auto;
+}
+
+.image-intro {
+    width: 60vw;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.masks img{
+    width: 4vw;
+}
+
+#intro-container {
+    display: flex;
+}
