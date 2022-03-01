@@ -1,5 +1,6 @@
 let bg;
 let maskOne;
+let interval = 0;
 // let mask2;
 // let mask3;
 // let mask4;
@@ -15,12 +16,21 @@ let secondScreen = document.querySelector('#game-area');
 let thirdScreen = document.querySelector('#game-over');
 
 // all character variables - mask
-let maskOneHeight = 150;
-let maskOneWidth = 150;
-let maskOneY = 200;
-let maskOneStartX = 500 - maskOneHeight - 40; // testing numbers
+let maskOneHeight = 90;
+let maskOneWidth = 60;
+let maskOneX = 100;
+let maskOneStartY = 700 - maskOneHeight - 20; // testing numbers
 
 // all object variables - coconut
+class coconut {
+  constructor(x, y, length, width) {
+  this.x = x;
+  this.y = y;
+  this.length = length;
+  this.width = width;
+  }
+}
+
 let coconutOneX = 20;
 let coconutOneY = 600;
 let coconutOneLength = 60;
@@ -58,7 +68,13 @@ function setup() {
 function draw() {
   background(230, 232, 151);
   image(bg, 60, 30, 1650, 950);
-  image(maskOne, 200, 400, 60, 100);
+  image(maskOne, maskOneX, maskOneStartY, maskOneWidth, maskOneHeight);
+  interval++;
+
+  if ((interval % 100) == 0) {
+     objectArray.push(new coconut(random(100, 2000), 200, coconutOneLength, coconutOneHeight));
+  }
+    
   // image(coconutOne, 700, 400, 60, 60); // just for size-reference 
   // image(mask2, 10, 10);
   // image(mask3, 10, 10);
@@ -69,19 +85,19 @@ function draw() {
   for (let i = 0; i < objectArray.length; i++) {
     image(
       coconutOne,
-      objectArray[i].y,
       objectArray[i].x,
+      objectArray[i].y,
       coconutOneLength,
       coconutOneHeight
     );
-    objectArray[i].x += 4;
+    objectArray[i].y += 4;
 
     // collision 
     if (
-      maskOneStartX >= objectArray[i].x + 200 &&
-      maskOneStartX <= objectArray[i].x + coconutOneHeight - 40 &&
-      maskOneX + maskOneWidth >= objectArray[i].y &&
-      maskOneX <= objectArray[i].y + coconutOneLength
+      maskOneStartY >= objectArray[i].y + 200 &&
+      maskOneStartY <= objectArray[i].y + coconutOneHeight - 40 &&
+      maskOneY + maskOneWidth >= objectArray[i].x &&
+      maskOneY <= objectArray[i].x + coconutOneLength
     ) {
       gameIsOver = true;
     }
@@ -91,8 +107,38 @@ function draw() {
       objectArray[i].x = 1000;
     }
   }  
+  
+  if (keyIsDown(LEFT_ARROW)) {
+    maskOneX -= 2;
   }
+  if (keyIsDown(RIGHT_ARROW)) {
+    maskOneX += 2;
+  }
+  // if (keyIsDown(UP_ARROW)) {
+  //   x -= 2;
+  // }
+  // if (keyIsDown(DOWN_ARROW)) {
+  //   x += 2;
+  
+    // if (keyIsPressed && keyCode === LEFT_ARROW && maskOneX > 0)  {
+    //   maskOneX[i].x = 2000;
+    // } else if (
+    //   keyIsPressed && keyCode === RIGHT_ARROW && maskOneX + maskOneWidth < width
+    // ) {
+    //   maskOneX += 5;
+    // } else if (
+    //   keyIsPressed & keyCode === UP_ARROW && maskOneStartY > 0) {
+    //   maskOneStartY -= 5;
+    // } else if (
+    //   keyIsPressed && keyCode === DOWN_ARROW && maskOneStartY + maskOneWidth < width
+    // ) {
+    //   maskOneStartY += 5;
+    // }
 
+  // if (gameIsOver) {
+  //   gameOver();
+  // }  
+}
 
 //this is what happens when the game is over. Hide the game screen, stop the draw function and reset the objects and show the game over screen
 function gameOver() {
