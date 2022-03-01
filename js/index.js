@@ -17,20 +17,21 @@ let thirdScreen = document.querySelector('#game-over');
 // all character variables - mask
 let maskOneHeight = 150;
 let maskOneWidth = 150;
-let maskOneX = 20;
-let maskOneStartY = 500 - maskOneHeight - 50; // testing numbers
+let maskOneY = 200;
+let maskOneStartX = 500 - maskOneHeight - 40; // testing numbers
 
 // all object variables - coconut
-let coconutOneX = 200;
-let coconutOneY = 20;
+let coconutOneX = 20;
+let coconutOneY = 600;
 let coconutOneLength = 60;
 let coconutOneHeight = 60; // testing numbers
 
 // array of objects to loop over to drop the coconuts
 let objectArray = [
-  {x: coconutOneX, y: coconutOneY},
-  {x: coconutOneX + 1200, y: coconutOneY + 200},
-  {x: coconutOneX + 2000, y: coconutOneY + 350},
+  {y: coconutOneY, x: coconutOneX},
+  {y: coconutOneY + 600, x: coconutOneX + 500},
+  {y: coconutOneY + 1200, x: coconutOneX + 650},
+  {y: coconutOneY + 2000, x: coconutOneX + 750},
 ];
 
 function preload() {
@@ -68,26 +69,26 @@ function draw() {
   for (let i = 0; i < objectArray.length; i++) {
     image(
       coconutOne,
-      objectArray[i].x,
       objectArray[i].y,
+      objectArray[i].x,
       coconutOneLength,
       coconutOneHeight
     );
-    objectArray[i].x -= 6;
+    objectArray[i].x += 4;
 
     // collision 
     if (
-      maskOneStartY >= objectArray[i].y + 20 &&
-      maskOneStartY <= objectArray[i].y + coconutOneHeight - 40 &&
-      maskOneX + maskOneWidth >= objectArray[i].x &&
-      maskOneX <= objectArray[i].x + coconutOneLength
+      maskOneStartX >= objectArray[i].x + 200 &&
+      maskOneStartX <= objectArray[i].x + coconutOneHeight - 40 &&
+      maskOneX + maskOneWidth >= objectArray[i].y &&
+      maskOneX <= objectArray[i].y + coconutOneLength
     ) {
       gameIsOver = true;
     }
 
     //this if statement checks if the image has past 0 and then resets the x so it will come again from the right
     if (objectArray[i].x < -500) {
-      objectArray[i].x = 2000;
+      objectArray[i].x = 1000;
     }
   }  
   }

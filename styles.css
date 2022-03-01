@@ -27,6 +27,17 @@ body {
     width: 4vw;
 }
 
+.masks {
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    padding: 20px;
+    text-align: center;
+}
+
 #intro-container {
     display: flex;
 }
