@@ -4,20 +4,14 @@ let maskOne;
 let interval = 0;
 let coconuts;
 let score = 0;
-let missedCoconuts = [];
-// let mask2;
-// let mask3;
-// let mask4;
-// let mask5;
-// let mask6;
-// let selectedMask;
-
-// let coconutOne;
-// let coconutTwo;
+let missedCoconuts = 0;
+let objectArray = [];
+let candyNight;
 
 let firstScreen = document.querySelector('#game-intro');
 let secondScreen = document.querySelector('#game-area');
 let thirdScreen = document.querySelector('#game-over');
+let restartBtn = document.querySelector("#restart-button");
 
 // all character variables - mask
 let maskOneHeight = 99;
@@ -26,19 +20,10 @@ let maskOneX = 100;
 let maskOneStartY = 700 - maskOneHeight - 20; // testing numbers
 
 // all object variables - coconut
-
 let coconutOneX = 20;
-let coconutOneY = 600;
+let coconutOneY = 200;
 let coconutOneLength = 60;
 let coconutOneHeight = 60; // testing numbers
-
-// array of objects to loop over to drop the coconuts
-let objectArray = [
-  {x: coconutOneY, y: coconutOneY},
-  {x: coconutOneY + 600, y: coconutOneY + 500},
-  {x: coconutOneY + 1200, y: coconutOneY + 650},
-  {x: coconutOneY + 2000, y: coconutOneY + 750},
-];
 
 class coconut {
   constructor(x, y, length, width) {
@@ -48,26 +33,13 @@ class coconut {
   this.width = width;
   this.score = score;
   }
-
-  update() {
-    this.objectArray.forEach((objectTwo, index) => {
-      objectTwo.y += 5;
-      if (objectTwo.y - objectTwo.length > windowheight) {
-        objectArray.splice(index, 1);
-      };
-    });
-  };
 } 
 
 function preload() {
-    bg = loadImage('../img/bg-game.jpg');
+    bg = loadImage('../img/bg-game.png');
     maskOne = loadImage('../img/mask2.png');
     coconutOne = loadImage('../img/Coconut_7.png');
-    // mask2 = loadImage('../img/mask2.png');
-    // mask3 = loadImage('../img/mask3.png');
-    // mask4 = loadImage('../img/mask4.png');
-    // mask5 = loadImage('../img/mask5.png');
-    // mask6 = loadImage('../img/mask6.png');
+    candyNight = loadFont('../assets/Candy Night.otf');
 }
 
 function setup() {
@@ -75,17 +47,18 @@ function setup() {
     const canvas = createCanvas(windowWidth, windowHeight);
     canvas.style('display', 'block');
     canvas.parent('game-area');
+    textFont(candyNight);
     secondScreen.style.display = "none";
     thirdScreen.style.display = "none";
     noLoop();
 }
 
 function draw() {
-  background(230, 232, 151);
-  image(bg, 60, 30, 1650, 950);
+  background(250);
+  image(bg, 0, 0, windowWidth, windowHeight);
   image(maskOne, maskOneX, maskOneStartY, maskOneWidth, maskOneHeight);
   interval++;
-
+  
   if ((interval % 100) == 0) {
      objectArray.push(new coconut(random(100, 1600), 200, coconutOneLength, coconutOneHeight));
   }
@@ -104,22 +77,31 @@ function draw() {
       coconutOneLength,
       coconutOneHeight
     );
-    objectArray[i].y += 4;
+    objectArray[i].y += 2;
 
+    if (objectArray[i].y >= windowHeight && objectArray[i].y <= windowHeight + 1) {
+      missedCoconuts++;
+      objectArray.splice(i, 1);
+      console.log("missed coconuts", missedCoconuts);
+    }
+
+    if (missedCoconuts == 1) {
+      gameIsOver = true;
+    }
+    
     // collision 
     if (
       maskOneStartY >= objectArray[i].y + 200 &&
       maskOneStartY <= objectArray[i].y + coconutOneHeight - 40 &&
       maskOneY + maskOneWidth >= objectArray[i].x &&
       maskOneY <= objectArray[i].x + coconutOneLength
-    ) {
-      gameIsOver = true;
-    }
+    )
     //this if statement checks if the image has past 0 and then resets the x so it will come again from the right
     if (objectArray[i].x < -500) {
       objectArray[i].x = 1000;
     }
   }  
+
   if (keyIsDown(LEFT_ARROW)) {
     maskOneX -= 15;
   }
@@ -132,18 +114,26 @@ function draw() {
   if (keyIsDown(DOWN_ARROW)) {
     maskOneStartY += 10;
   } 
-  
-  if (collidesWith(objectArray, maskOne)) {
-  
   // order like the function
-  // console.log(collidesWith(objectArray, maskOne));
-    score++;
-    console.log(score);
+  if (collidesWith(objectArray, maskOne)) {
+  score++;
+  console.log(score);
   }
+
+  // print the score and the missed coconuts in the game-area
+  textSize(44);
+  text("Score:", 600, 100);
+  text(score, 750, 100);
+  fill(125, 162, 46);
+
+  textSize(44);
+  text("Missed coconuts:", 900, 100);
+  text(missedCoconuts, 1250, 100);
+  fill(125, 162, 46);
 
   if (gameIsOver) {
   gameOver();
-  } 
+  }
 }
 
 // these arguments are generic
@@ -156,7 +146,7 @@ function collidesWith(anyArray, anyObject) {
 
 // this is just a generic function with generic arguments
 // pass the name of the mask but a generic name for coconuts because there are many
-function collision(objectOne, objectTwo) {
+function collision(maskOne, objectTwo) {
   // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
   let isCollisionTrue = (
     maskOneX < objectTwo.x + objectTwo.width &&
@@ -177,6 +167,11 @@ function gameOver() {
   thirdScreen.style.display = "flex";
   //no loop is used to stop the draw function so it is not always running behind the scenes
   noLoop();
+
+  const scoreElement = document.querySelector("#game-over span");
+  scoreElement.innerText = score;
+
+  coconuts = new coconut;
 }
 
 // function decayVelocity(vel) {
@@ -197,13 +192,13 @@ window.onload = () => {
     startGame();
   };
   document.getElementById("restart-button").onclick = () => {
+    score = 0;
+    missedCoconuts = 0;
+    objectArray = [];
+    gameIsOver = false;
     startGame();
   }
 }
-
-// gameOverBtn.addEventListener("click", () => {
-//   gameIsOver = true;
-// });
 
 function startGame() {
   // change the css, hide both game-intro and game-over screen, so that
