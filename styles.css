@@ -57,7 +57,6 @@ p {
     display: grid;
     justify-content: center;
     align-items: center;
-    /* background-color: dodgerblue; */
     color: white;
     height: 50px;
 }
@@ -75,6 +74,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 180px;
 }
 
 .image-outro {
@@ -83,7 +83,9 @@ p {
 }
 
 #outro-container {
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 #restart-button {
@@ -91,4 +93,5 @@ p {
     border-radius: 0.5em;
     border-color: black;
     font-size: 18px;
+    display: inline-block;
 }

@@ -43,7 +43,6 @@ function preload() {
 }
 
 function setup() {
-    // create canvas and attach to the game- div
     const canvas = createCanvas(windowWidth, windowHeight);
     canvas.style('display', 'block');
     canvas.parent('game-area');
@@ -59,15 +58,9 @@ function draw() {
   image(maskOne, maskOneX, maskOneStartY, maskOneWidth, maskOneHeight);
   interval++;
   
-  if ((interval % 100) == 0) {
+  if ((interval % 80) == 0) {
      objectArray.push(new coconut(random(100, 1600), 200, coconutOneLength, coconutOneHeight));
   }
-  // image(coconutOne, 700, 400, 60, 60); // just for size-reference 
-  // image(mask2, 10, 10);
-  // image(mask3, 10, 10);
-  // image(mask4, 10, 10);
-  // image(mask5, 10, 10);
-  // image(mask6, 10, 10);
 
   for (let i = 0; i < objectArray.length; i++) {
     image(
@@ -82,10 +75,9 @@ function draw() {
     if (objectArray[i].y >= windowHeight && objectArray[i].y <= windowHeight + 1) {
       missedCoconuts++;
       objectArray.splice(i, 1);
-      console.log("missed coconuts", missedCoconuts);
     }
 
-    if (missedCoconuts == 1) {
+    if (missedCoconuts == 10) {
       gameIsOver = true;
     }
     
@@ -121,7 +113,6 @@ function draw() {
   // order like the function
   if (collidesWith(objectArray, maskOne)) {
   score++;
-  console.log(score);
   }
 
   // print the score and the missed coconuts in the game-area
@@ -178,18 +169,6 @@ function gameOver() {
   coconuts = new coconut;
 }
 
-// function decayVelocity(vel) {
-//   // implement decaying velocities
-//   const decay = vel > 0 ? -0.05 : vel < 0 ? 0.05 : 0;
-//   vel += decay;
-//   const overshootFromTop = vel < 0 && decay < 0;
-//   const overshootFromBot = vel > 0 && decay > 0;
-//   if (overshootFromTop || overshootFromBot) {
-//     return 0;
-//   }
-//   return vel;
-// }
-
 window.onload = () => {
   // wire up the start/restart buttons to use the startGame function
   document.getElementById("start-button").onclick = () => {
@@ -207,13 +186,8 @@ window.onload = () => {
 function startGame() {
   // change the css, hide both game-intro and game-over screen, so that
   // we can use this function both to start/restart
-  // creating variables to store the values
-  // const gameIntroElement = document.querySelector("#game-intro");
   firstScreen.style.display = "none";
-  // const gameOverElement = document.querySelector(".game-over");
   thirdScreen.style.display = "none";
-  // show the board
-  // const gameAreaElement = document.getElementById("game-area");
   secondScreen.style.display = "flex";
   // and start the draw() loop from p5
   loop();
