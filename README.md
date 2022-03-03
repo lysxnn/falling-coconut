@@ -1,6 +1,4 @@
-# falling-coconut
-
-The Falling Coconut
+# The Falling Coconut
 
 Let's play! https://lysxnn.github.io/falling-coconut/
 
