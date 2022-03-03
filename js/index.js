@@ -107,7 +107,7 @@ function draw() {
     maskOneX -= 15;
   }}
   if (keyIsDown(RIGHT_ARROW)) {
-    if (maskOneX < windowWidth) {
+    if (maskOneX + maskOneWidth < windowWidth) {
     maskOneX += 15;
   }}
   if (keyIsDown(UP_ARROW)) {
@@ -115,7 +115,7 @@ function draw() {
     maskOneStartY -= 10;
   }}
   if (keyIsDown(DOWN_ARROW)) {
-    if (maskOneStartY < windowHeight) {
+    if (maskOneStartY + maskOneHeight < windowHeight) {
     maskOneStartY += 10;
   }}
   // order like the function
