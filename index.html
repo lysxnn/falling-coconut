@@ -12,21 +12,20 @@
 </head>
 <body>
     <div id="game-intro">
-        <img class="image-intro" src="./img/game-intro-02.png" alt="Intro">
+        <img class="intro-img" src="./img/game-intro-02.png" alt="Intro">
         <div id="intro-container">
             <div class="masks">
-                <a href=""><img src="./img/mask2.png" alt="Mask 1"></a>
-                <!-- <img src="./img/mask2.png" alt="Mask 2">
-                <img src="./img/mask3.png" alt="Mask 3">
-                <img src="./img/mask4.png" alt="Mask 4">
-                <img src="./img/mask5.png" alt="Mask 5">
-                <img src="./img/mask6.png" alt="Mask 6"> -->
+                <div class="mask"><img src="./img/mask1.png" alt="Mask 1"></div>
+                <div class="mask"><img src="./img/mask2.png" alt="Mask 2"></div>
+                <div class="mask"><img src="./img/mask3.png" alt="Mask 3"></div>
+                <div class="mask"><img src="./img/mask4.png" alt="Mask 4"></div>
+                <div class="mask"><img src="./img/mask5.png" alt="Mask 5"></div>
+                <div class="mask"><img src="./img/mask6.png" alt="Mask 6"></div>
             </div>
             <div class="description">
                 <h2>How to play</h2>
-                <p>Catch as many coconuts as you can.<br>Use the arrows on your computer and let's catch those coconuts. You have 2 minutes!
-                </p>
-                <button id="start-button">Start Game</button>
+                <p>Catch as many as you can but watch out for missing coconuts.<br>Move the Tikimask with the arrows on your computer and let's catch those coconuts!</p>
+                <button id="start-button">Get the cooonuts!</button>
             </div>
         </div>
     </div> 
@@ -37,13 +36,9 @@
     <div id="game-over">
         <img class="image-outro" src="./img/game-over.png" alt="Game Over Screen Restart">
         <div id="outro-container">
-            <h3>Your total score was: <span>0</span></h3>
-            <button id="restart-button">Restart</button>
+            <h2>Your total score: <span>0</span></h2><button id="restart-button">Try again!</button>
         </div> 
-        
     </div>  
-   
-
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
     <script type="text/javascript" src="./js/index.js"></script>
 </body>

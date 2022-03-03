@@ -103,17 +103,21 @@ function draw() {
   }  
 
   if (keyIsDown(LEFT_ARROW)) {
+    if (maskOneX > 0) {
     maskOneX -= 15;
-  }
+  }}
   if (keyIsDown(RIGHT_ARROW)) {
+    if (maskOneX < windowWidth) {
     maskOneX += 15;
-  }
+  }}
   if (keyIsDown(UP_ARROW)) {
+    if (maskOneStartY > 0) {
     maskOneStartY -= 10;
-  }
+  }}
   if (keyIsDown(DOWN_ARROW)) {
+    if (maskOneStartY < windowHeight) {
     maskOneStartY += 10;
-  } 
+  }}
   // order like the function
   if (collidesWith(objectArray, maskOne)) {
   score++;

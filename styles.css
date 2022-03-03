@@ -7,7 +7,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-#game-intro, #game-over {
+#game-intro {
     width: 80vw;
     height: 80vh;
     display: flex;
@@ -17,41 +17,78 @@ body {
     margin: 10vh auto;
 }
 
-.image-intro {
+.intro-img {
     width: 60vw;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.masks img{
-    width: 4vw;
-}
-
-.masks {
-    padding: 40px;
-    justify-content: center;
-    align-items: center;
-}
-
-.description {
-    padding: 20px;
-    text-align: center;
+    padding-bottom: 0px;
 }
 
 #intro-container {
     display: flex;
+    justify-content: center;
+}
+
+.description {
+    margin: 0 auto;
+    padding-left: 50px;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+p {
+    font-size: 18px;
+}
+
+#start-button {
+    background-color: rgb(204, 218, 227);
+    border-radius: 0.5em;
+    border-color: black;
+    font-size: 18px;
+}
+
+.masks {
+    display: grid;
+    grid-template-columns: repeat(6, 120px);
+}
+
+.mask {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* background-color: dodgerblue; */
+    color: white;
+    height: 50px;
+}
+
+.mask img {
+    height: 6vw;
+    width: auto;
+    justify-content: ;
+}
+
+#game-over {
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-outro {
-    width: 70vw;
-    height: 60vh;
-    justify-content: flex-start;
-    align-items: flex-start;
+    width: 60vw;
+    justify-content: center;
 }
 
 #outro-container {
-    background-color: blue;
-    
+    justify-content: center;
 }
 
-
+#restart-button {
+    background-color: rgb(204, 218, 227);
+    border-radius: 0.5em;
+    border-color: black;
+    font-size: 18px;
+}
