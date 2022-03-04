@@ -64,7 +64,7 @@ p {
 .mask img {
     height: 6vw;
     width: auto;
-    justify-content: ;
+    justify-content: auto;
 }
 
 #game-over {

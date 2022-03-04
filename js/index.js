@@ -36,10 +36,10 @@ class coconut {
 } 
 
 function preload() {
-    bg = loadImage('../img/bg-game.png');
-    maskOne = loadImage('../img/mask2.png');
-    coconutOne = loadImage('../img/Coconut_7.png');
-    candyNight = loadFont('../assets/Candy Night.otf');
+    bg = loadImage('img/bg-game.png');
+    maskOne = loadImage('img/mask2.png');
+    coconutOne = loadImage('img/Coconut_7.png');
+    candyNight = loadFont('assets/CandyNight.otf');
 }
 
 function setup() {
