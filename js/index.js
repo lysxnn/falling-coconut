@@ -53,8 +53,7 @@ function setup() {
 }
 
 function draw() {
-  background(250);
-  image(bg, 0, 0, windowWidth, windowHeight);
+  background(bg);
   image(maskOne, maskOneX, maskOneStartY, maskOneWidth, maskOneHeight);
   interval++;
   

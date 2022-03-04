@@ -1,97 +1,99 @@
 body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Ubuntu', sans-serif;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Ubuntu", sans-serif;
 }
 
 #game-intro {
-    width: 80vw;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 10vh auto;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10vh auto;
 }
 
 .intro-img {
-    width: 60vw;
-    padding-bottom: 0px;
+  width: 60vw;
+  padding-bottom: 0px;
 }
 
 #intro-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .description {
-    margin: 0 auto;
-    padding-left: 50px;
+  margin: 0 auto;
+  padding-left: 50px;
 }
 
 h2 {
-    font-size: 30px;
-    margin-top: 0px;
+  font-size: 30px;
+  margin-top: 0px;
 }
 
 p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 #start-button {
-    background-color: rgb(204, 218, 227);
-    border-radius: 0.5em;
-    border-color: black;
-    font-size: 18px;
+  background-color: rgb(204, 218, 227);
+  border-radius: 0.5em;
+  border-color: black;
+  font-size: 18px;
 }
 
 .masks {
-    display: grid;
-    grid-template-columns: repeat(6, 120px);
+  display: grid;
+  grid-template-columns: repeat(6, 120px);
 }
 
 .mask {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    height: 50px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 50px;
 }
 
 .mask img {
-    height: 6vw;
-    width: auto;
-    justify-content: auto;
+  height: 6vw;
+  width: auto;
+  justify-content: auto;
 }
 
 #game-over {
-    width: 80vw;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 180px;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 180px;
 }
 
 .image-outro {
-    width: 60vw;
-    justify-content: center;
+  width: 60vw;
+  justify-content: center;
 }
 
 #outro-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #restart-button {
-    background-color: rgb(204, 218, 227);
-    border-radius: 0.5em;
-    border-color: black;
-    font-size: 18px;
-    display: inline-block;
+  background-color: rgb(204, 218, 227);
+  border-radius: 0.5em;
+  border-color: black;
+  font-size: 18px;
+  display: inline-block;
 }
