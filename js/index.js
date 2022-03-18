@@ -8,9 +8,9 @@ let missedCoconuts = 0;
 let objectArray = [];
 let candyNight;
 
-let firstScreen = document.querySelector('#game-intro');
-let secondScreen = document.querySelector('#game-area');
-let thirdScreen = document.querySelector('#game-over');
+let firstScreen = document.querySelector("#game-intro");
+let secondScreen = document.querySelector("#game-area");
+let thirdScreen = document.querySelector("#game-over");
 let restartBtn = document.querySelector("#restart-button");
 
 // all character variables - mask
@@ -27,38 +27,40 @@ let coconutOneHeight = 60; // testing numbers
 
 class coconut {
   constructor(x, y, length, width) {
-  this.x = x;
-  this.y = y;
-  this.length = length;
-  this.width = width;
-  this.score = score;
+    this.x = x;
+    this.y = y;
+    this.length = length;
+    this.width = width;
+    this.score = score;
   }
-} 
+}
 
 function preload() {
-    bg = loadImage('img/bg-game.png');
-    maskOne = loadImage('img/mask2.png');
-    coconutOne = loadImage('img/Coconut_7.png');
-    candyNight = loadFont('assets/CandyNight.otf');
+  bg = loadImage("img/bg-game.png");
+  maskOne = loadImage("img/mask2.png");
+  coconutOne = loadImage("img/Coconut_7.png");
+  candyNight = loadFont("assets/CandyNight.otf");
 }
 
 function setup() {
-    const canvas = createCanvas(windowWidth, windowHeight);
-    canvas.style('display', 'block');
-    canvas.parent('game-area');
-    textFont(candyNight);
-    secondScreen.style.display = "none";
-    thirdScreen.style.display = "none";
-    noLoop();
+  const canvas = createCanvas(windowWidth, windowHeight);
+  canvas.style("display", "block");
+  canvas.parent("game-area");
+  textFont(candyNight);
+  secondScreen.style.display = "none";
+  thirdScreen.style.display = "none";
+  noLoop();
 }
 
 function draw() {
   background(bg);
   image(maskOne, maskOneX, maskOneStartY, maskOneWidth, maskOneHeight);
   interval++;
-  
-  if ((interval % 80) == 0) {
-     objectArray.push(new coconut(random(100, 1600), 200, coconutOneLength, coconutOneHeight));
+
+  if (interval % 80 == 0) {
+    objectArray.push(
+      new coconut(random(100, 1600), 200, coconutOneLength, coconutOneHeight)
+    );
   }
 
   for (let i = 0; i < objectArray.length; i++) {
@@ -71,7 +73,10 @@ function draw() {
     );
     objectArray[i].y += 2;
 
-    if (objectArray[i].y >= windowHeight && objectArray[i].y <= windowHeight + 1) {
+    if (
+      objectArray[i].y >= windowHeight &&
+      objectArray[i].y <= windowHeight + 1
+    ) {
       missedCoconuts++;
       objectArray.splice(i, 1);
     }
@@ -79,39 +84,43 @@ function draw() {
     if (missedCoconuts == 10) {
       gameIsOver = true;
     }
-    
-    // collision 
+
+    // collision
     if (
       maskOneStartY >= objectArray[i].y + 200 &&
       maskOneStartY <= objectArray[i].y + coconutOneHeight - 40 &&
       maskOneY + maskOneWidth >= objectArray[i].x &&
       maskOneY <= objectArray[i].x + coconutOneLength
     )
-    //this if statement checks if the image has past 0 and then resets the x so it will come again from the right
-    if (objectArray[i].x < -500) {
-      objectArray[i].x = 1000;
-    }
-  }  
+      if (objectArray[i].x < -500) {
+        //this if statement checks if the image has past 0 and then resets the x so it will come again from the right
+        objectArray[i].x = 1000;
+      }
+  }
 
   if (keyIsDown(LEFT_ARROW)) {
     if (maskOneX > 0) {
-    maskOneX -= 15;
-  }}
+      maskOneX -= 15;
+    }
+  }
   if (keyIsDown(RIGHT_ARROW)) {
     if (maskOneX + maskOneWidth < windowWidth) {
-    maskOneX += 15;
-  }}
+      maskOneX += 15;
+    }
+  }
   if (keyIsDown(UP_ARROW)) {
     if (maskOneStartY > 0) {
-    maskOneStartY -= 10;
-  }}
+      maskOneStartY -= 10;
+    }
+  }
   if (keyIsDown(DOWN_ARROW)) {
     if (maskOneStartY + maskOneHeight < windowHeight) {
-    maskOneStartY += 10;
-  }}
+      maskOneStartY += 10;
+    }
+  }
   // order like the function
   if (collidesWith(objectArray, maskOne)) {
-  score++;
+    score++;
   }
 
   // print the score and the missed coconuts in the game-area
@@ -126,7 +135,7 @@ function draw() {
   fill(125, 162, 46);
 
   if (gameIsOver) {
-  gameOver();
+    gameOver();
   }
 }
 
@@ -142,12 +151,11 @@ function collidesWith(anyArray, anyObject) {
 // pass the name of the mask but a generic name for coconuts because there are many
 function collision(maskOne, objectTwo) {
   // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-  let isCollisionTrue = (
+  let isCollisionTrue =
     maskOneX < objectTwo.x + objectTwo.width &&
     maskOneX + maskOneWidth > objectTwo.x &&
     maskOneStartY < objectTwo.y + objectTwo.length &&
-    maskOneHeight + maskOneStartY > objectTwo.y
-  );
+    maskOneHeight + maskOneStartY > objectTwo.y;
   if (isCollisionTrue) {
     objectTwo.y = windowHeight + 20;
   }
@@ -165,7 +173,7 @@ function gameOver() {
   const scoreElement = document.querySelector("#game-over span");
   scoreElement.innerText = score;
 
-  coconuts = new coconut;
+  coconuts = new coconut();
 }
 
 window.onload = () => {
@@ -179,8 +187,8 @@ window.onload = () => {
     objectArray = [];
     gameIsOver = false;
     startGame();
-  }
-}
+  };
+};
 
 function startGame() {
   // change the css, hide both game-intro and game-over screen, so that
